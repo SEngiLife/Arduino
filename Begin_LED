@@ -1,1 +1,60 @@
+/* Author: S.Engi.Life
+This program implements 2 very simple functions, Blink consists of turning a
+LED on and off with an interval of 1 second and Fading that increases and 
+decreases the brightness of a LED with an interval of 30 milliseconds. */
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
+/* To toggle between the Blink and Fading functions change the value 
+of the "function" variable to 'A' (Blink) or 'B' (Fading) */
+#define function 'A'
+
+int LED = 9;         // the PWM pin the LED is attached to
+int brightness = 0;  // how bright the LED is
+int fadeAmount = 5;  // how many points to fade the LED by
+
+void setup() {
+  // initialize digital pin LED as an output.
+  pinMode(LED, OUTPUT);
+}
+
+void Blink(){
+  digitalWrite(LED, HIGH);  // turn the LED on (HIGH is the voltage level)
+  delay(1000);                      // wait for a second
+  digitalWrite(LED, LOW);   // turn the LED off by making the voltage LOW
+  delay(1000); 
+  // wait for a second
+}
+
+void Fading(){
+  // set the brightness of pin 9:
+  analogWrite(LED, brightness);
+  // change the brightness for next time through the loop:
+  brightness = brightness + fadeAmount;
+
+  // reverse the direction of the fading at the ends of the fade:
+  if (brightness <= 0 || brightness >= 255) {
+    fadeAmount = -fadeAmount;
+  }
+  // wait for 50 milliseconds to see the dimming effect
+  delay(50);
+  
+}
+
+// the loop function runs over and over again forever
+void loop() {
+
+  switch (function) {
+  case 'A':
+    Blink();
+    break;
+    
+  case 'B':
+    Fading();
+    break;
+    
+  default:
+    // statements
+    break;
+  }
+}
