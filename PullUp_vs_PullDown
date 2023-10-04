@@ -1,4 +1,12 @@
 
+/* Author: S.Engi.Life
+This program reads the state of two push buttons, lights the corresponding 
+LEDs when the buttons are pressed, and sends information about the state of
+the buttons to the serial monitor. The code illustrates the use of pull-up
+and pull-down resistors in conjunction with buttons and LEDs. */
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
+
 int buton1 = 0;
 int buton2 = 0;
 
